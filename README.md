@@ -82,7 +82,7 @@
 
 + 설명 : 일정을 수정합니다
 + HTTP : PUT
-+ URL : localhost:8080/todo/{todoId}?author=Stirng&contents=String&password=String&change_date=date
++ URL : localhost:8080/todo/{1}?author=Stirng&contents=String&password=String&change_date=date
 + 상태 코드 : 200 OK
 + 오류 코드
 + 400 Red Request
