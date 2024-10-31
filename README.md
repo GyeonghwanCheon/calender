@@ -80,6 +80,6 @@
 ---
 
 ## SQL
-![SQL_IMAGE] (https://github.com/user-attachments/assets/e59ade16-c821-4928-8f84-37fcd0225045)
+![SQL_IMAGE](https://github.com/user-attachments/assets/e59ade16-c821-4928-8f84-37fcd0225045)
 
 
