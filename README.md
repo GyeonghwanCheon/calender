@@ -14,10 +14,11 @@
 + HTTP : GET
 + URL : localhost:8080/todo
 + 상태 코드 : 200 OK
-  |Key|Value|Description|
+
+|Key|Value|Description|
 |------|---|---|
-  |change_date|date|수정일|
-  |author|varchar(50)|작성자|
+|change_date|date|수정일|
+|author|varchar(50)|작성자|
 
 
 #### 3. 
