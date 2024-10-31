@@ -36,7 +36,39 @@
     "password" : "password",
     "create_date" : "YYYY-MM-DD",
     "change_date" : "2024-10-31"
-
 }
 ```
-  
+
+#### 4. 일정 수정
+
++ 설명 : 일정을 수정합니다
++ HTTP : PUT
++ URL : localhost:8080/todo
++ 상태 코드 : 200 OK
++ JSON
+```
+{
+    "author" : "author",
+    "contents" : "contents",
+    "password" : "password",
+    "change_date" : "change_date"
+}
+```
+
+#### 5. 일정 삭제 
+
++ 설명 : 일정을 수정합니다
++ HTTP : PUT
++ URL : localhost:8080/todo
++ 상태 코드 : 200 OK
++ JSON
+```
+{
+    "password" : "password",
+}
+```
+
+
+
+
+
