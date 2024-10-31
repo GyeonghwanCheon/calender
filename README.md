@@ -7,17 +7,32 @@
 
 + 설명 : 일정 하나를 조회합니다
 + HTTP : GET
-+ URL : localhost:8080/todo/{1}
++ URL : localhost:8080/todo/{1}?id=int
 + 상태 코드 : 200 OK
++ 에러 코드 : 404 Not Found
+  ```
+  {
+      "message" : "Resource does not exist on server"       
+  }
+  ```
+|Key|Value|Description|
+|------|---|---|
+|id|int|식별자ID|
 
 
 #### 2. 전체 일정 조회
 
 + 설명 : 일정 전체를 조회합니다
 + HTTP : GET
-+ URL : localhost:8080/todo
++ URL : localhost:8080/todo?change_date=date&author=varchar(50)
 + 상태 코드 : 200 OK
-
++ 에러 코드 : 404 Not Found
+  ```
+  {
+      "message" : "Resource does not exist on server"       
+  }
+  ``` 
++ Param
 |Key|Value|Description|
 |------|---|---|
 |change_date|date|수정일|
@@ -28,8 +43,29 @@
 
 + 설명 : 일정을 저장합니다
 + HTTP : POST
-+ URL : localhost:8080/todo
++ URL : localhost:8080/todo?id=int&author=String&contents=String&password=String&create_date=date&change_date=date
 + 상태 코드 : 200 OK
++ 오류 코드
++ 400 Red Request
+```
+{
+   "errors": [
+        {
+        "param": "password",
+        "value": 123,
+        "error": "TypeError",
+        "msg": "must be String"
+        }
+    ]
+}
+```
++ 404 Not Found
+```
+{
+   "message" : "Resource does not exist on server"
+}
+```
+
 + JSON
 ```
 {
@@ -46,8 +82,20 @@
 
 + 설명 : 일정을 수정합니다
 + HTTP : PUT
-+ URL : localhost:8080/todo
++ URL : localhost:8080/todo/{todoId}?author=Stirng&contents=String&password=String&change_date=date
 + 상태 코드 : 200 OK
++ 오류 코드
++ 400 Red Request
+```
+{
+   "errors": [
+        {
+        "param": "password",
+        "msg": "Password does not match"
+        }
+    ]
+}
+```
 + JSON
 ```
 {
@@ -60,10 +108,22 @@
 
 #### 5. 일정 삭제 
 
-+ 설명 : 일정을 수정합니다
-+ HTTP : PUT
-+ URL : localhost:8080/todo
++ 설명 : 일정을 삭제합니다
++ HTTP : DELETE
++ URL : localhost:8080/todo/{1}?password=String
 + 상태 코드 : 200 OK
++ 오류 코드
++ 400 Red Request
+```
+{
+   "errors": [
+        {
+        "param": "password",
+        "msg": "Password does not match"
+        }
+    ]
+}
+
 + JSON
 ```
 {
