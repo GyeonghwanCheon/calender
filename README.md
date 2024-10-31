@@ -1,4 +1,7 @@
 # calender
+---
+
+## API 명세서
 
 #### 1. 하루 일정 조회
 
@@ -68,7 +71,15 @@
 }
 ```
 
+---
+
+## ERD
+![ERD_IMAGE](https://github.com/user-attachments/assets/19f76a94-b1ed-4fbe-91cf-c04cb7b46f38) 
 
 
-![aaa](https://github.com/user-attachments/assets/19f76a94-b1ed-4fbe-91cf-c04cb7b46f38) 
+---
+
+## SQL
+![SQL_IMAGE] (https://github.com/user-attachments/assets/e59ade16-c821-4928-8f84-37fcd0225045)
+
 
