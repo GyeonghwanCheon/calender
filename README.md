@@ -7,8 +7,14 @@
 
 + 설명 : 일정 하나를 조회합니다
 + HTTP : GET
-+ URL : localhost:8080/todo/{1}?id=int
++ URL : localhost:8080/todo/{todoId}
 + 상태 코드 : 200 OK
+  ```
+  {
+      "author" : "String",
+      "contents" : "String"        
+  }
+  ```
 + 에러 코드 : 404 Not Found
   ```
   {
@@ -24,8 +30,20 @@
 
 + 설명 : 일정 전체를 조회합니다
 + HTTP : GET
-+ URL : localhost:8080/todo?change_date=date&author=varchar(50)
++ URL : localhost:8080/todo?change_date={date}&author={author}
 + 상태 코드 : 200 OK
+  ```
+  [
+    {
+      "author" : "String",
+      "contents" : "String"        
+    },
+    {
+      "author" : "String",
+      "contents" : "String"
+    }
+  ]
+  ```
 + 에러 코드 : 404 Not Found
   ```
   {
@@ -44,8 +62,27 @@
 
 + 설명 : 일정을 저장합니다
 + HTTP : POST
-+ URL : localhost:8080/todo?id=int&author=String&contents=String&password=String&create_date=date&change_date=date
++ URL : localhost:8080/todo
++ RequestBody
+```
+{
+    "id" : "id",
+    "author" : "author",
+    "contents" : "contents",
+    "password" : "password",
+    "create_date" : "YYYY-MM-DD",
+    "change_date" : "2024-10-31"
+}
+```
 + 상태 코드 : 200 OK
+  ```
+  {
+      "id" : "id",
+      "author" : "String",
+      "contents" : "String",
+      "password" : "password"       
+  }
+  ```
 + 오류 코드
 + 400 Red Request
 ```
@@ -67,37 +104,13 @@
 }
 ```
 
-+ JSON
-```
-{
-    "id" : "id",
-    "author" : "author",
-    "contents" : "contents",
-    "password" : "password",
-    "create_date" : "YYYY-MM-DD",
-    "change_date" : "2024-10-31"
-}
-```
 
 #### 4. 일정 수정
 
 + 설명 : 일정을 수정합니다
 + HTTP : PUT
-+ URL : localhost:8080/todo/{1}?author=Stirng&contents=String&password=String&change_date=date
-+ 상태 코드 : 200 OK
-+ 오류 코드
-+ 400 Red Request
-```
-{
-   "errors": [
-        {
-        "param": "password",
-        "msg": "Password does not match"
-        }
-    ]
-}
-```
-+ JSON
++ URL : localhost:8080/todo/{todoId}
++ RequestBody
 ```
 {
     "author" : "author",
@@ -106,13 +119,14 @@
     "change_date" : "change_date"
 }
 ```
-
-#### 5. 일정 삭제 
-
-+ 설명 : 일정을 삭제합니다
-+ HTTP : DELETE
-+ URL : localhost:8080/todo/{1}?password=String
 + 상태 코드 : 200 OK
+```
+{
+    "author" : "author",
+    "contents" : "contents",
+    "password" : "password"
+}
+```
 + 오류 코드
 + 400 Red Request
 ```
@@ -125,10 +139,34 @@
     ]
 }
 ```
-+ JSON
+
+#### 5. 일정 삭제 
+
++ 설명 : 일정을 삭제합니다
++ HTTP : DELETE
++ URL : localhost:8080/todo/{todoId}
++ RequestBody
 ```
 {
     "password" : "password",
+}
+```
++ 상태 코드 : 200 OK
+```
+{
+    "password" : "password",
+}
+```
++ 오류 코드
++ 400 Red Request
+```
+{
+   "errors": [
+        {
+        "param": "password",
+        "msg": "Password does not match"
+        }
+    ]
 }
 ```
 
