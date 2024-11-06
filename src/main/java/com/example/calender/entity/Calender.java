@@ -1,5 +1,6 @@
 package com.example.calender.entity;
 
+import com.example.calender.dto.CalenderRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -22,4 +23,9 @@ public class Calender {
 
     private LocalDate changeDate; // 수정일
 
+    public void update(CalenderRequestDto dto) {
+        this.author = dto.getAuthor();
+        this.contents = dto.getContents();
+        this.password = dto.getPassword();
+    }
 }

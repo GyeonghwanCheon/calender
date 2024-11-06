@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 
 @Getter
-public class CalenderRequsetDto {
+public class CalenderRequestDto {
 
     private String author;
 
