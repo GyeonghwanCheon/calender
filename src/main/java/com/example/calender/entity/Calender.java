@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @AllArgsConstructor
@@ -19,9 +20,10 @@ public class Calender {
 
     private String password; // 비밀번호
 
-    private LocalDate createDate; // 작성일
+    private String createDate; // 작성일
 
-    private LocalDate changeDate; // 수정일
+    private String changeDate; // 수정일
+
 
     public void update(CalenderRequestDto dto) {
         this.author = dto.getAuthor();

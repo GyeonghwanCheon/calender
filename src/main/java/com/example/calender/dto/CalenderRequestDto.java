@@ -3,6 +3,7 @@ package com.example.calender.dto;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Getter
@@ -14,7 +15,7 @@ public class CalenderRequestDto {
 
     private String password;
 
-    private LocalDate createDate;
+    private String createDate;
 
-    private LocalDate changeDate;
+    private String changeDate;
 }

@@ -4,6 +4,7 @@ import com.example.calender.entity.Calender;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Getter
@@ -17,9 +18,9 @@ public class CalenderResponseDto {
 
     private String password;
 
-    private LocalDate createDate;
+    private String createDate;
 
-    private LocalDate changeDate;
+    private String changeDate;
 
     public CalenderResponseDto(Calender calender) {
         this.id = calender.getId();

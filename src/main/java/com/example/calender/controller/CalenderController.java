@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @RestController
@@ -21,9 +23,18 @@ public class CalenderController {
         // 식별자가 1씩 증가 하도록 만듦
         Long calenderId = calenderList.isEmpty() ? 1 : Collections.max(calenderList.keySet()) + 1;
 
+        LocalDateTime dateTime = LocalDateTime.now();
+
+        // 원하는 포맷 지정
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        // 포맷 적용
+        String formattedDate = dateTime.format(formatter);
+
+
         //요청 받은 데이터로 Calender 객체 생성
         Calender calender = new Calender(calenderId, requestDto.getAuthor(), requestDto.getContents(),
-                requestDto.getPassword(), requestDto.getCreateDate(), requestDto.getChangeDate());
+                requestDto.getPassword(), formattedDate, formattedDate);
 
         // Inmemory DB에 Memo 저장
         calenderList.put(calenderId, calender);
@@ -31,17 +42,23 @@ public class CalenderController {
         return new ResponseEntity<>(new CalenderResponseDto(calender), HttpStatus.CREATED);
     }
 
+
+
     // 일정 전체 조회
     @GetMapping
     public ResponseEntity<List<CalenderResponseDto>> findAllCalender() {
         //init List
         List<CalenderResponseDto> responseList = new ArrayList<>();
 
+
         //HashMap<Calender> -> List<CalenderResponseDto>
         for(Calender calender : calenderList.values()) {
             CalenderResponseDto responseDto = new CalenderResponseDto(calender);
             responseList.add(responseDto);
         }
+
+        // 수정일 날짜 기준 내림차순
+        responseList.sort(Comparator.comparing(CalenderResponseDto::getChangeDate).reversed());
 
         return new ResponseEntity<>(responseList,HttpStatus.OK);
 
@@ -85,6 +102,8 @@ public class CalenderController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
+
+
         calender.update(dto);
 
         return new ResponseEntity<>(new CalenderResponseDto(calender), HttpStatus.OK);
@@ -98,9 +117,10 @@ public class CalenderController {
             @RequestBody CalenderRequestDto dto) {
 
         Calender calender = calenderList.get(id);
-        //calenderlist의 key값을 id를 포함하고 있다면 그리고 요청받은 패스워드 값이 같다면.
 
+        //calenderlist의 key값을 id를 포함하고 있다면 그리고 요청받은 패스워드 값이 같다면.
         if (calenderList.containsKey(id)) {
+            //비밀번호가 맞는 지 확인하고 맞으면 삭제.
             if (Objects.equals(calender.getPassword(), dto.getPassword())) {
 
                 calenderList.remove(id);
