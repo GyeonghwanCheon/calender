@@ -89,4 +89,26 @@ public class CalenderController {
 
         return new ResponseEntity<>(new CalenderResponseDto(calender), HttpStatus.OK);
     }
+
+
+    // 식별자 단건 삭제
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCalender(
+            @PathVariable Long id,
+            @RequestBody CalenderRequestDto dto) {
+
+        Calender calender = calenderList.get(id);
+        //calenderlist의 key값을 id를 포함하고 있다면 그리고 요청받은 패스워드 값이 같다면.
+
+        if (calenderList.containsKey(id)) {
+            if (Objects.equals(calender.getPassword(), dto.getPassword())) {
+
+                calenderList.remove(id);
+
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
 }
