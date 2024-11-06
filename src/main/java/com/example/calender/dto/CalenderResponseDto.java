@@ -3,15 +3,23 @@ package com.example.calender.dto;
 import com.example.calender.entity.Calender;
 import lombok.Getter;
 
+import java.time.LocalDate;
+
+
 @Getter
 public class CalenderResponseDto {
 
     private Long id;
+
     private String author;
+
     private String contents;
+
     private String password;
-    private String createDate;
-    private String changeDate;
+
+    private LocalDate createDate;
+
+    private LocalDate changeDate;
 
     public CalenderResponseDto(Calender calender) {
         this.id = calender.getId();
