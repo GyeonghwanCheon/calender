@@ -6,6 +6,7 @@ import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 @AllArgsConstructor
@@ -29,5 +30,13 @@ public class Calender {
         this.author = dto.getAuthor();
         this.contents = dto.getContents();
         this.password = dto.getPassword();
+
+
+        LocalDateTime dateTime = LocalDateTime.now();
+        // 원하는 포맷 지정
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        // 포맷 적용
+        String formattedDate = dateTime.format(formatter);
+        this.changeDate = formattedDate;
     }
 }
